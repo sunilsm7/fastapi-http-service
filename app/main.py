@@ -9,7 +9,7 @@ from routes import (
 def create_app():
     app = FastAPI(
         title="FastAPI HTTP Test Service",
-        description="API for interacting with TMDB through AI agents",
+        description="API for interacting with HTTP requests",
         version="0.1.0"
     )
 
@@ -29,11 +29,11 @@ def create_app():
     # app.include_router(api_router, prefix="/api/v1", tags=["api"])
     app.include_router(request_inspect.router)
     app.include_router(status_codes.router)
-    # app.include_router(auth_routes.router)
+    app.include_router(auth_routes.router)
     # app.include_router(response_format.router)
     # app.include_router(dynamic_data.router)
     # app.include_router(redirect.router)
-    # app.include_router(anything.router)
+    app.include_router(anything.router)
     return app
 
 
