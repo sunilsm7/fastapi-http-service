@@ -17,7 +17,11 @@ def random_bytes(n: int):
     return Response(content=os.urandom(n), media_type="application/octet-stream")
 
 
-@router.api_route("/delay/{delay}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"])
+@router.get("/delay/{delay}")
+@router.post("/delay/{delay}")
+@router.put("/delay/{delay}")
+@router.delete("/delay/{delay}")
+@router.patch("/delay/{delay}")
 def delay_response(delay: float):
     delay = min(delay, 10.0)
     time.sleep(delay)
