@@ -11,3 +11,4 @@ sqlalchemy==2.0.41
 alembic==1.16.2
 brotli==1.1.0
 pyjwt==2.10.1
+python-jose==3.5.0
