@@ -1,0 +1,11 @@
+services:
+  fastapi-http-service:
+    build: .
+    container_name: fastapi_http_service_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped

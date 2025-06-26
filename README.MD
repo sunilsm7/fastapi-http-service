@@ -24,6 +24,19 @@ $ pip install -r requirements.txt
 $ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
+---
+
+## Docker
+
+```bash
+# Build the image
+docker build -t fastapi-http-service .
+
+# Run the container
+docker run -p 8000:8000 fastapi-http-service
+```
+
+---
 
 ##  API Docs
 
