@@ -4,7 +4,11 @@ from fastapi.responses import RedirectResponse
 router = APIRouter()
 
 
-@router.api_route("/redirect-to", methods=["GET", "POST", "PUT", "PATCH", "DELETE"])
+@router.get("/redirect-to")
+@router.post("/redirect-to")
+@router.put("/redirect-to")
+@router.delete("/redirect-to")
+@router.patch("/redirect-to")
 def redirect_to(url: str = Query(...)):
     return RedirectResponse(url=url)
 
