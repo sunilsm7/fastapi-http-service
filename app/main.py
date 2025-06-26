@@ -27,8 +27,8 @@ def create_app():
 
     # Include API routers
     # app.include_router(api_router, prefix="/api/v1", tags=["api"])
-    app.include_router(request_inspect.router, tags="Request Inspect")
-    app.include_router(status_codes.router, tags="Status Codes")
+    app.include_router(request_inspect.router, tags=["Request Inspect"])
+    app.include_router(status_codes.router, tags=["Status Codes"])
     app.include_router(auth_routes.router, tags=["Auth"])
     app.include_router(response_format.router, tags=["Response formats"])
     app.include_router(dynamic_data.router, tags="Dynamic Data")
