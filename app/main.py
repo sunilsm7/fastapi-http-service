@@ -6,6 +6,8 @@ from routes import (
     users, posts
 )
 
+from mock_data import generate_all_mock_data
+
 
 def create_app():
     app = FastAPI(
@@ -42,6 +44,17 @@ def create_app():
 app = create_app()
 
 
+# Generate new mock data on startup
+mock_data = generate_all_mock_data()
+
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the FastAPI HTTP Test Service!"}
+
+
+@app.get("/refresh-data")
+def refresh_data():
+    global mock_data
+    mock_data = generate_all_mock_data()
+    return {"message": "Mock data refreshed successfully"}
