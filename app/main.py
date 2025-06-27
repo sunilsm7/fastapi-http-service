@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import (
     request_inspect, status_codes, auth_routes,
-    response_format, dynamic_data, redirect, anything
+    response_format, dynamic_data, redirect, anything,
+    users, posts
 )
 
 
@@ -26,14 +27,15 @@ def create_app():
     # init_db_pool()
 
     # Include API routers
-    # app.include_router(api_router, prefix="/api/v1", tags=["api"])
     app.include_router(request_inspect.router, tags=["Request Inspect"])
     app.include_router(status_codes.router, tags=["Status Codes"])
     app.include_router(auth_routes.router, tags=["Auth"])
     app.include_router(response_format.router, tags=["Response formats"])
-    app.include_router(dynamic_data.router, tags="Dynamic Data")
-    app.include_router(redirect.router, tags="Redirect")
+    app.include_router(dynamic_data.router, tags=["Dynamic Data"])
+    app.include_router(redirect.router, tags=["Redirect"])
     app.include_router(anything.router, tags=["Anything"])
+    app.include_router(users.router, tags=["Users"])
+    app.include_router(posts.router, tags=["Posts"])
     return app
 
 
