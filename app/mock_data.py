@@ -59,8 +59,33 @@ mock_posts = [
     },
 ]
 
-mock_comments = []
 
-mock_albums = []
+mock_comments = [
+    {
+        "id": 2,
+        "postId": 1,
+        "name": "Leanne Graham",
+        "email": "Sincere1@april.biz",
+        "body": "test comment"
+    }
+]
 
-mock_photos = []
+
+mock_albums = [
+    {
+        "id": 1,
+        "userId": 1,
+        "title": "Aashiqui"
+    }
+]
+
+
+mock_photos = [
+    {
+        "id": 0,
+        "albumId": 0,
+        "title": "string",
+        "url": "string",
+        "thumbnailUrl": "string"
+    }
+]
