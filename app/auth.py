@@ -6,12 +6,15 @@ from typing import Optional
 
 from fastapi.security import HTTPBearer, HTTPBasic, HTTPDigest, HTTPBasicCredentials, HTTPAuthorizationCredentials
 from fastapi import HTTPException, Depends, status
+from config import settings
 import secrets
 import bcrypt
 
 # JWT Configuration
-SECRET_KEY = "your-secret-key-here"  # Change this in production
-ALGORITHM = "HS256"
+SECRET_KEY = settings.SECRET_KEY
+ALGORITHM = settings.ALGORITHM
+AUTH_TEST_USERNAME = settings.AUTH_TEST_USERNAME
+AUTH_TEST_PASSWORD = settings.AUTH_TEST_PASSWORD
 
 
 # Models
@@ -28,8 +31,8 @@ class Token(BaseModel):
 # Mock database
 fake_users_db = {
     "testuser": {
-        "username": "testuser",
-        "hashed_password": bcrypt.hashpw(b"testpwd", bcrypt.gensalt()).decode('utf-8'),
+        "username": AUTH_TEST_USERNAME,
+        "hashed_password": bcrypt.hashpw(AUTH_TEST_PASSWORD.encode('utf-8'), bcrypt.gensalt()).decode('utf-8'),
     }
 }
 
@@ -40,8 +43,8 @@ security_digest = HTTPDigest()
 
 
 def verify_basic_auth(credentials: HTTPBasicCredentials = Depends(security_basic)):
-    correct_username = secrets.compare_digest(credentials.username, "user")
-    correct_password = secrets.compare_digest(credentials.password, "pass")
+    correct_username = secrets.compare_digest(credentials.username, AUTH_TEST_USERNAME)
+    correct_password = secrets.compare_digest(credentials.password, AUTH_TEST_PASSWORD)
     if not (correct_username and correct_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Basic Auth")

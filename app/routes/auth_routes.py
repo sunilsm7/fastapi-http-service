@@ -49,8 +49,6 @@ async def login_for_access_token(form_data: User):
 async def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
 
-# Protected endpoint example
-
 
 @router.get("/protected")
 async def protected_route(current_user: User = Depends(get_current_user)):
